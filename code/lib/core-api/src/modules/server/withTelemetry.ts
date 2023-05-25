@@ -39,12 +39,16 @@ async function getErrorLevel({ cliOptions, presetOptions }: TelemetryOptions): P
   // should we load the preset?
   const presets = await loadAllPresets({
     ...presetOptions,
-    corePresets: [
-      ...presetOptions.corePresets,
-      require.resolve('@storybook/core-api/dist/presets/common-preset'),
-    ],
-    overridePresets: [],
   });
+
+  // const presets = await loadAllPresets({
+  //   ...presetOptions,
+  //   corePresets: [
+  //     ...presetOptions.corePresets,
+  //     require.resolve('@storybook/core-api/dist/presets/common-preset'),
+  //   ],
+  //   overridePresets: [],
+  // });
 
   // If the user has chosen to enable/disable crash reports in main.js
   // or disabled telemetry, we can return that

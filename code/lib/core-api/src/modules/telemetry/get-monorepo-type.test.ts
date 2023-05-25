@@ -4,7 +4,7 @@ import path from 'path';
 import { getMonorepoType, monorepoConfigs } from './get-monorepo-type';
 
 // eslint-disable-next-line global-require, jest/no-mocks-import
-jest.mock('fs-extra', () => require('../../../__mocks__/fs-extra'));
+jest.mock('fs-extra', () => require('../../../../../__mocks__/fs-extra'));
 
 jest.mock('../common', () => {
   const coreCommon = jest.requireActual('../common');
