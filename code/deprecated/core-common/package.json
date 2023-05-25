@@ -5,14 +5,14 @@
   "keywords": [
     "storybook"
   ],
-  "homepage": "https://github.com/storybookjs/storybook/tree/next/code/lib/core-common",
+  "homepage": "https://github.com/storybookjs/storybook/tree/next/code/deprecated/core-common",
   "bugs": {
     "url": "https://github.com/storybookjs/storybook/issues"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/storybookjs/storybook.git",
-    "directory": "code/lib/core-common"
+    "directory": "code/deprecated/core-common"
   },
   "funding": {
     "type": "opencollective",

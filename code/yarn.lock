@@ -5516,9 +5516,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@storybook/builder-manager@workspace:*, @storybook/builder-manager@workspace:builders/builder-manager":
+"@storybook/builder-manager@workspace:*, @storybook/builder-manager@workspace:deprecated/builder-manager":
   version: 0.0.0-use.local
-  resolution: "@storybook/builder-manager@workspace:builders/builder-manager"
+  resolution: "@storybook/builder-manager@workspace:deprecated/builder-manager"
   dependencies:
     "@storybook/core-api": 7.1.0-alpha.23
     "@storybook/node-logger": 7.1.0-alpha.23

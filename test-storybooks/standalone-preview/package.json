@@ -28,7 +28,7 @@
     "@storybook/angular": "portal:../../code/frameworks/angular",
     "@storybook/api": "portal:../../code/lib/api",
     "@storybook/blocks": "portal:../../code/lib/blocks",
-    "@storybook/builder-manager": "portal:../../code/builders/builder-manager",
+    "@storybook/builder-manager": "portal:../../code/deprecated/builder-manager",
     "@storybook/builder-vite": "portal:../../code/builders/builder-vite",
     "@storybook/builder-webpack5": "portal:../../code/builders/builder-webpack5",
     "@storybook/channel-postmessage": "portal:../../code/lib/channel-postmessage",
