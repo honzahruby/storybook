@@ -4,7 +4,7 @@ import { join, resolve } from 'path';
 import slash from 'slash';
 import type { ConfigFile } from '../../code/lib/csf-tools';
 import { readConfig } from '../../code/lib/csf-tools';
-import { getInterpretedFile } from '../../code/lib/core-api/src/common';
+import { getInterpretedFile } from '../../code/lib/core-api/dist/common';
 
 export async function readMainConfig({ cwd }: { cwd: string }) {
   const configDir = join(cwd, '.storybook');
