@@ -1,7 +1,7 @@
-import WebSocket, { WebSocketServer } from 'ws';
+import WebSocket, { WebSocketServer, type ServerOptions } from 'ws';
 import { stringify } from 'telejson';
 
-type Server = ConstructorParameters<typeof WebSocketServer>[0]['server'];
+type Server = ServerOptions['server'];
 
 export class ServerChannel {
   webSocketServer: WebSocketServer;
@@ -9,13 +9,15 @@ export class ServerChannel {
   constructor(server: Server) {
     this.webSocketServer = new WebSocketServer({ noServer: true });
 
-    server.on('upgrade', (request, socket, head) => {
-      if (request.url === '/storybook-server-channel') {
-        this.webSocketServer.handleUpgrade(request, socket, head, (ws) => {
-          this.webSocketServer.emit('connection', ws, request);
-        });
-      }
-    });
+    if (server) {
+      server.on('upgrade', (request, socket, head) => {
+        if (request.url === '/storybook-server-channel') {
+          this.webSocketServer.handleUpgrade(request, socket, head, (ws) => {
+            this.webSocketServer.emit('connection', ws, request);
+          });
+        }
+      });
+    }
   }
 
   emit(type: string, args: any = []) {

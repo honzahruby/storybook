@@ -31,10 +31,10 @@ export async function storybookDevServer(options: Options) {
 
   const serverChannel = getServerChannel(server);
 
-  let indexError: Error;
+  let indexError: Error | undefined;
   // try get index generator, if failed, send telemetry without storyCount, then rethrow the error
-  const initializedStoryIndexGenerator: Promise<StoryIndexGenerator> = getStoryIndexGenerator(
-    features,
+  const initializedStoryIndexGenerator = getStoryIndexGenerator(
+    features || {},
     options,
     serverChannel
   ).catch((err) => {
@@ -48,7 +48,7 @@ export async function storybookDevServer(options: Options) {
     options.extendServer(server);
   }
 
-  app.use(getAccessControlMiddleware(core?.crossOriginIsolated));
+  app.use(getAccessControlMiddleware(core?.crossOriginIsolated || false));
   app.use(getCachingMiddleware());
 
   getMiddleware(options.configDir)(router);
@@ -57,14 +57,16 @@ export async function storybookDevServer(options: Options) {
 
   const { port, host } = options;
   const proto = options.https ? 'https' : 'http';
-  const { address, networkAddress } = getServerAddresses(port, host, proto);
+  const { address, networkAddress } = getServerAddresses(port || 6006, host || '', proto);
 
   const listening = new Promise<void>((resolve, reject) => {
     // @ts-expect-error (Following line doesn't match TypeScript signature at all 🤔)
     server.listen({ port, host }, (error: Error) => (error ? reject(error) : resolve()));
   });
 
-  const builderName = typeof core?.builder === 'string' ? core.builder : core?.builder?.name;
+  const builderName = (
+    typeof core?.builder === 'string' ? core.builder : core?.builder?.name
+  ) as string;
 
   const [previewBuilder, managerBuilder] = await Promise.all([
     getPreviewBuilder(builderName, options.configDir),
@@ -130,7 +132,7 @@ export async function storybookDevServer(options: Options) {
   const previewResult = await previewStarted;
 
   // Now the preview has successfully started, we can count this as a 'dev' event.
-  doTelemetry(core, initializedStoryIndexGenerator, options);
+  doTelemetry(core, initializedStoryIndexGenerator as Promise<StoryIndexGenerator>, options);
 
   return { previewResult, managerResult, address, networkAddress };
 }

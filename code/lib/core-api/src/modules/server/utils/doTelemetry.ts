@@ -1,4 +1,4 @@
-import type { CoreConfig, Options, StoryIndex } from '@storybook/types';
+import type { CoreConfig, Options, StoryIndex, VersionCheck } from '@storybook/types';
 import { telemetry, getPrecedingUpgrade } from '../../telemetry';
 import { useStorybookMetadata } from './metadata';
 import type { StoryIndexGenerator } from './StoryIndexGenerator';
@@ -17,7 +17,7 @@ export async function doTelemetry(
       let storyIndex: StoryIndex;
       try {
         storyIndex = await generator?.getIndex();
-      } catch (err) {
+      } catch (err: any) {
         // If we fail to get the index, treat it as a recoverable error, but send it up to telemetry
         // as if we crashed. In the future we will revisit this to send a distinct error
         sendTelemetryError(err, 'dev', {
@@ -32,7 +32,7 @@ export async function doTelemetry(
       };
       if (storyIndex) {
         Object.assign(payload, {
-          versionStatus: versionUpdates ? versionStatus(versionCheck) : 'disabled',
+          versionStatus: versionUpdates ? versionStatus(versionCheck as VersionCheck) : 'disabled',
           storyIndex: summarizeIndex(storyIndex),
         });
       }

@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/triple-slash-reference
-/// <reference path="./typings.d.ts" />
+/// <reference path="../../typings.d.ts" />
 
 export { getPreviewHeadTemplate, getPreviewBodyTemplate } from '../common';
 

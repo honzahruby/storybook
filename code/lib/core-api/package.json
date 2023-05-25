@@ -62,6 +62,25 @@
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "dist/index.d.ts"
+      ],
+      "dist/common": [
+        "dist/common.d.ts"
+      ],
+      "dist/server": [
+        "dist/server.d.ts"
+      ],
+      "dist/builder": [
+        "dist/builder.d.ts"
+      ],
+      "dist/telemetry": [
+        "dist/telemetry.d.ts"
+      ]
+    }
+  },
   "files": [
     "dist/**/*",
     "templates/**/*",

@@ -15,7 +15,9 @@ export async function getStoryIndexGenerator(
   options: Options,
   serverChannel: ServerChannel
 ) {
-  let initializedStoryIndexGenerator: Promise<StoryIndexGenerator> = Promise.resolve(undefined);
+  let initializedStoryIndexGenerator: Promise<StoryIndexGenerator> = Promise.resolve(
+    undefined as any
+  ) as Promise<StoryIndexGenerator>;
   if (features?.buildStoriesJson || features?.storyStoreV7) {
     const workingDir = process.cwd();
     const directories = {
@@ -33,7 +35,7 @@ export async function getStoryIndexGenerator(
       docs: await docsOptions,
       workingDir,
       storiesV2Compatibility: !features?.storyStoreV7,
-      storyStoreV7: features?.storyStoreV7,
+      storyStoreV7: features?.storyStoreV7 || false,
     });
 
     initializedStoryIndexGenerator = generator.initialize().then(() => generator);

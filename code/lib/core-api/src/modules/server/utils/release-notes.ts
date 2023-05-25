@@ -1,3 +1,4 @@
+import type { SemVer } from 'semver';
 import semver from 'semver';
 import type { ReleaseNotesData } from '@storybook/types';
 
@@ -6,8 +7,8 @@ import type { ReleaseNotesData } from '@storybook/types';
 // every place that relies on this data can reference the version of the
 // release notes that we expect to use.
 const getReleaseNotesVersion = (version: string): string => {
-  const { major, minor } = semver.parse(version);
-  const { version: releaseNotesVersion } = semver.coerce(`${major}.${minor}`);
+  const { major, minor } = semver.parse(version) as SemVer;
+  const { version: releaseNotesVersion } = semver.coerce(`${major}.${minor}`) as SemVer;
   return releaseNotesVersion;
 };
 export const getReleaseNotesFailedState = (version: string) => {

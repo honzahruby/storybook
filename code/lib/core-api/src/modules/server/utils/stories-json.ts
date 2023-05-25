@@ -49,7 +49,7 @@ export function useStoriesJson({
       const index = await generator.getIndex();
       res.header('Content-Type', 'application/json');
       res.send(JSON.stringify(index));
-    } catch (err) {
+    } catch (err: any) {
       res.status(500);
       res.send(err.toString());
     }
@@ -61,7 +61,7 @@ export function useStoriesJson({
       const index = convertToIndexV3(await generator.getIndex());
       res.header('Content-Type', 'application/json');
       res.send(JSON.stringify(index));
-    } catch (err) {
+    } catch (err: any) {
       res.status(500);
       res.send(err.toString());
     }

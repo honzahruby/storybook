@@ -21,7 +21,7 @@ export async function copyAllStaticFiles(staticDirs: any[] | undefined, outputDi
             preserveTimestamps: true,
             filter: (_, dest) => !skipPaths.includes(dest),
           });
-        } catch (e) {
+        } catch (e: any) {
           logger.error(e.message);
           process.exit(-1);
         }
@@ -37,7 +37,7 @@ export async function copyAllStaticFilesRelativeToMain(
 ) {
   const workingDir = process.cwd();
 
-  return staticDirs.reduce(async (acc, dir) => {
+  return staticDirs?.reduce(async (acc, dir) => {
     await acc;
 
     const staticDirAndTarget = typeof dir === 'string' ? dir : `${dir.from}:${dir.to}`;
